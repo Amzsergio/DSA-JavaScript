@@ -85,7 +85,7 @@ function createPhoneNumber(numbers){
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 
-// CODEWARS Does my number look big in this?
+/* // CODEWARS Does my number look big in this?
 
 // A Narcissistic Number is a positive number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).
 // For example, take 153 (3 digits), which is narcisstic:
@@ -115,5 +115,36 @@ function narcissistic(value) {
       }else {
           return false
       }
+  } */
+
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+
+  //    CODEWARS Sum of Digits / Digital Root
+
+//   Digital root is the recursive sum of all the digits in a number.
+// Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
+
+// Examples
+//     16  -->  1 + 6 = 7
+//    942  -->  9 + 4 + 2 = 15  -->  1 + 5 = 6
+// 132189  -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+// 493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+
+function digital_root(n) {
+
+    let arrN = ('' + n).split('')
+    if (arrN.length === 1) return n;
+    if(arrN.length > 1) {
+        let sum = arrN.reduce((acc, d) => {
+            return Number(d) + acc
+        }, 0)
+        let arrSum = ('' + sum).split('')
+        if (arrSum.length > 1){
+            return sum = digital_root(sum)
+        }
+        return sum
+    }
   }
 
+
+console.log(digital_root(493193))
