@@ -118,9 +118,9 @@ function narcissistic(value) {
   } */
 
   /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
-
-  //    CODEWARS Sum of Digits / Digital Root
-
+  
+  /*   //    CODEWARS Sum of Digits / Digital Root
+  
 //   Digital root is the recursive sum of all the digits in a number.
 // Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
 
@@ -131,7 +131,7 @@ function narcissistic(value) {
 // 493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
 
 function digital_root(n) {
-
+    
     let arrN = ('' + n).split('')
     if (arrN.length === 1) return n;
     if(arrN.length > 1) {
@@ -144,7 +144,21 @@ function digital_root(n) {
         }
         return sum
     }
+}
+
+
+console.log(digital_root(493193)) */
+
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+//CODEwARS Recursive Replication
+
+// You need to design a recursive function called replicate which will receive arguments times and number.
+// The function should return an array containing repetitions of the number argument. For instance, replicate(3, 5) should return [5,5,5]. If the times argument is negative, return an empty array.
+// As tempting as it may seem, do not use loops to solve this problem.
+
+function replicate(times, number, newArr=[]) {
+    if(times === newArr.length || times < 0) return newArr;
+    newArr.push(number)
+    return replicate(times, number, newArr)
   }
-
-
-console.log(digital_root(493193))
+  
