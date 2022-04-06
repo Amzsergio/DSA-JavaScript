@@ -166,57 +166,57 @@ function replicate(times, number, newArr=[]) {
 /* EJERCICIO 1
 *
 * Implementar de forma RECURSIVA el método Newton-Raphson. Este método es utilizado para aproximar
-  * la raiz cuadrada de un número entero positivo.
-  *
-  * Parametros:
-  *   count: cantidad de veces que se requiere iterar
-  *   x: valor entero positivo al que se le quiere calcular la raiz cuadrada
-  *
-  * Formula:
-  *   y = (valorAnterior + (x/valorAnterior))/2
-  *   valorAnterior(0) = x/2
-  * 
-  * Salida:
-  *   > -1 si no es invocado con un x positivo (Ejemplo: -4)
-  *   > -1 si no es invocado con un x entero   (Ejemplo: 4.3)
-  *   > -1 si no es invocado con un x positivo y entero (Ejemplo: -4.3)
-  *   > El valor obtenido luego de haber aplicado la formula count veces a x
-  * 
-  * Ejemplos:
-  *   x = 20
-  *   count = 4
-  *   valorAnterior(0) = 10
-  *   y(1) = (10 + (20/10))/2 = 6
+* la raiz cuadrada de un número entero positivo.
+*
+* Parametros:
+*   count: cantidad de veces que se requiere iterar
+*   x: valor entero positivo al que se le quiere calcular la raiz cuadrada
+*
+* Formula:
+*   y = (valorAnterior + (x/valorAnterior))/2
+*   valorAnterior(0) = x/2
+* 
+* Salida:
+*   > -1 si no es invocado con un x positivo (Ejemplo: -4)
+*   > -1 si no es invocado con un x entero   (Ejemplo: 4.3)
+*   > -1 si no es invocado con un x positivo y entero (Ejemplo: -4.3)
+*   > El valor obtenido luego de haber aplicado la formula count veces a x
+* 
+* Ejemplos:
+*   x = 20
+*   count = 4
+*   valorAnterior(0) = 10
+*   y(1) = (10 + (20/10))/2 = 6
   *   valorAnterior = 6
   *   y(2) = (6 + (20/6))/2 = 4.666
   *   valorAnterior = 4.666
   *   y(3) = (4.666 + (20/4.666))/2 = 4.476
   *   valorAnterior = 4.476
   *   y(4) = (4.476+ (20/4.476))/2 = 4.472
-  *
-  *   x = 45
-  *   count = 4
-  *   valorAnterior(0) = 22.5
-  *   y(1) = (22.5 + (45/22.5))/2 = 12.25
-  *   valorAnterior = 12.25
-  *   y(2) = (12.25 + (45/12.25))/2 = 7.96
-  *   valorAnterior = 7.96
-  *   y(3) = (7.96 + (45/7.96))/2 = 6.80
-  *   valorAnterior = 6.80
-  *   y(4) = (6.80 + (45/6.80))/2 = 6.70
-  *
-  * */
+*
+*   x = 45
+*   count = 4
+*   valorAnterior(0) = 22.5
+*   y(1) = (22.5 + (45/22.5))/2 = 12.25
+*   valorAnterior = 12.25
+*   y(2) = (12.25 + (45/12.25))/2 = 7.96
+*   valorAnterior = 7.96
+*   y(3) = (7.96 + (45/7.96))/2 = 6.80
+*   valorAnterior = 6.80
+*   y(4) = (6.80 + (45/6.80))/2 = 6.70
+*
+* */
 
 /*
-  function newtonRaphson(x, count, valorAnterior=x/2){
+function newtonRaphson(x, count, valorAnterior=x/2){
   
-    let y = (valorAnterior + (x/(valorAnterior)))/2;
-    console.log(y)
+  let y = (valorAnterior + (x/(valorAnterior)))/2;
+  console.log(y)
   
-    if( x < 0 || !Number.isInteger(x)) return -1
-    if(count === 0) return y
+  if( x < 0 || !Number.isInteger(x)) return -1
+  if(count === 0) return y
     if(count > 0){
-  
+      
       count--
       y = newtonRaphson(x, count, y);
     }
@@ -224,7 +224,7 @@ function replicate(times, number, newArr=[]) {
   }
   console.log(newtonRaphson(45,4))
   */
-  function newtonRaphson(x, count, valorAnterior = x/2){
+ /*  function newtonRaphson(x, count, valorAnterior = x/2){
   
     let result = (valorAnterior + (x/valorAnterior))/2
     
@@ -236,7 +236,8 @@ function replicate(times, number, newArr=[]) {
     }
     count--
     return newtonRaphson(x, count, result)
-  }
+  } */
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
   
   /*
   * EJERCICIO 2
@@ -253,22 +254,22 @@ function replicate(times, number, newArr=[]) {
   *   > Cualquier otro numero: si no estan balanceados
   *
   * Ejemplos:
-            
+  
   *   exp: "(5+6)-(t+2*9-(a+7)/4+(8+5*2))" ---> 0
   
   *   exp: "70 + (9/x - 2))" -->[(,),(,)] -->[]= 
-                                [),(,(,),)] -->[0] = 
+  [),(,(,),)] -->[0] = 
   
-                                para ( asignar 1
-                                para ) asignar -1
-                                     ) condicional, si le antecede un 1 en cualquier pos                                     
-  
-  *   exp: "(9+10)-6*a/2+(-5)" -------------->  0
-  *   exp: "(4))" ---------------------------> !== 0
-  *   exp: "))((" ---------------------------> !== 0
-  * */
-  
-  function balanced(exp) {
+  para ( asignar 1
+    para ) asignar -1
+    ) condicional, si le antecede un 1 en cualquier pos                                     
+    
+    *   exp: "(9+10)-6*a/2+(-5)" -------------->  0
+    *   exp: "(4))" ---------------------------> !== 0
+    *   exp: "))((" ---------------------------> !== 0
+    * */
+   
+/*      function balanced(exp) {
     // Tu código aca:
     let newArr = exp.split("").filter(item => item == "(" || item == ")")
     console.log(newArr)
@@ -287,12 +288,13 @@ function replicate(times, number, newArr=[]) {
     }
     console.log(sum)
     return sum 
-  
+    
   }
   
-  console.log(balanced("(((((())"))
+  console.log(balanced("((())")) */
   
   
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
   
   
   
@@ -342,24 +344,25 @@ function replicate(times, number, newArr=[]) {
   *   => Se obtiene una nueva lista que es: -> 2 -> null 
   * 
   * */
-  //-> 5 -> 4 -> 9 -> 1 -> 2 -> 5 -> null
-  // newList -> 9 -> 10 ->
+ //-> 5 -> 4 -> 9 -> 1 -> 2 -> 5 -> null
+ // newList -> 9 -> 10 ->
   
-  LinkedList.prototype.compressList = function(func) {
-    // Tu código aca:
-    if(this.head && !this.head.next) return this
-    let current = this.head;
-    let newList = new LinkedList();
-    while(current.next){
-      newList.add(func(current.value, current.next.value));
-      if(current.next.next){
-        current = current.next.next
+ /*   LinkedList.prototype.compressList = function(func) {
+   // Tu código aca:
+   if(this.head && !this.head.next) return this
+   let current = this.head;
+   let newList = new LinkedList();
+   while(current.next){
+     newList.add(func(current.value, current.next.value));
+     if(current.next.next){
+       current = current.next.next
       }else break;
       // Se pone el break para que no quede en bucle infinito en una lista con longitud par. 
     }
     return newList;
-  };
+  }; */
   
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
   
   /*
   * EJERCICIO 4
@@ -378,15 +381,16 @@ function replicate(times, number, newArr=[]) {
   *   lista: -> 5 -> 10 -> 3 -> 2 -> 9 -> null
   *   lista(0) = 5
   *   lista.removeFrom(3):-> 5 -> 10 -> 3 -> 9 -> null
-      lista.removeFrom(0): -> 10 -> 3 -> 9 -> null
+  lista.removeFrom(0): -> 10 -> 3 -> 9 -> null
   * */
-  LinkedList.prototype.removeFrom = function(index){
-    // Tu código aca:
-  
-    if (index === 0){
-        let cache = this.head.next
-        this.head = cache
-        return this
+/*    LinkedList.prototype.removeFrom = function(index){
+   // Tu código aca:
+   
+   if (index === 0){
+    //  let cache = this.head.next
+    //  this.head = cache
+    this.head = this.head.next
+     return this
     } 
     let current = this.head;
     let aux = 1; 
@@ -402,8 +406,9 @@ function replicate(times, number, newArr=[]) {
       current.next = cache
     }
     return this
-  };
+  }; */
   
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
   
   /*
   * EJERCICIO 5
@@ -420,13 +425,13 @@ function replicate(times, number, newArr=[]) {
   *   lista.insertInOrder(3): -> 5 -> 4 -> 3 -> 2 -> null
   *
   * */
-  // 8 -> 7 -> 2 -> null
-  LinkedList.prototype.insertInOrder = function(value){
-      // Tu código aca:
-      let newNode = new Node(value);
-      if (!this.head) { // si la lista esta vacia
-        this.head = newNode;
-        return;
+ // 8 -> 7 -> 2 -> null
+ /*   LinkedList.prototype.insertInOrder = function(value){
+   // Tu código aca:
+   let newNode = new Node(value);
+   if (!this.head) { // si la lista esta vacia
+    this.head = newNode;
+    return;
       } else if (!this.head.next && this.head.value > value) {
         this.head.next = newNode;
         return;
@@ -449,4 +454,37 @@ function replicate(times, number, newArr=[]) {
       }
       current.next = newNode;
       return;
-  };
+    }; */
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+// CODEWARS Moving Zeros To The End
+
+// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+// moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
+
+function moveZeros(arr) {
+  let arr2 = [];
+  for(let i=0; i<arr.length; i++){
+    while(arr[i] === 0){
+        arr.splice(i, 1)
+        arr2.push(0)  
+    }
+  } 
+  for(let i=0; i<arr2.length; i++){
+    arr.push(arr2[i])
+  }
+  return arr
+}
+
+console.log(moveZeros([ 9, 0, 0, 9, 1, 2, 1, 1, 3, 1, 9]))
+
+
+
+
+
+
+
+
+
+
+
