@@ -461,13 +461,13 @@ function newtonRaphson(x, count, valorAnterior=x/2){
 // Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
 
 // moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
-
+/* 
 function moveZeros(arr) {
   let arr2 = [];
   for(let i=0; i<arr.length; i++){
     while(arr[i] === 0){
-        arr.splice(i, 1)
-        arr2.push(0)  
+      arr.splice(i, 1)
+      arr2.push(0)  
     }
   } 
   for(let i=0; i<arr2.length; i++){
@@ -477,7 +477,181 @@ function moveZeros(arr) {
 }
 
 console.log(moveZeros([ 9, 0, 0, 9, 1, 2, 1, 1, 3, 1, 9]))
+ */
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+/*
+* EJERCICIO 6
+*
+* Utilizando un STACK, y dada una frase invertir palabra por palabra de la misma.
+* NO SE PUEDEN USAR METODOS DE ARRAY. 
+*
+* Parametro:
+*   str: string a ser invertido palabra a palabra
+* 
+* Salida: 
+*  > string de la palabra invertida 
+*
+* Ejemplo:
+*   Hello World: olleH dlroW
+*   There is a little monkey: erehT si a elttil yeknom
+* */
 
+function reverseWords(str){
+  /* 
+  let pila = new Stack();  //pila = l
+  let palabra = '';                    //
+  for(let i= 0; i< str.length; i++){ //     olleh
+    if(str[i]=== " " ){
+      pila.push(palabra)
+      palabra = '';
+    }
+    else{
+      palabra =  str[i] + palabra;    //dlrow
+    }
+  }
+  pila.push(palabra)//como la ultima palabra no se pushea porque no cumple la condicion de corte del espacio, la pusheamos afuera del ciclo
+  let palabra2= '';
+  for (let i = 0; i < pila.array.length; i++){
+     if(i > 0 ){
+     palabra2 = palabra2 +" "+ pila.array[i]; 
+    }
+    else{
+      palabra2 = pila.array[i];
+    }
+  }
+  return palabra2
+  }
+  */
+  
+  
+  }
+  
+  /*
+  * EJERCICIO 7
+  *
+  * Implemtnar la funcion height dentro del prototype de BinarySearchTree que calcule la altura de un arbol.
+  *
+  * Parametros: -
+  * Valor de retorno: altura del arbol
+  * 
+  * Salida:
+  *   > Altura del arbol 
+  *
+  * Pista: funcion auxiliar, calcular la altura de un arbol.[Una forma de resolverlo es pensarlo recursivamente y usando Math.max]
+  *
+  *            16             ---> Nivel 1
+            /      \
+          6         23        ---> Nivel 2
+        /  \       /   \
+       2    14    17    31    ---> Nivel 3
+        \
+         5                    ---> Nivel 4
+  
+  
+  * */
+  
+  BinarySearchTree.prototype.height = function(){
+  
+      if(!this.left && !this.right) return 1
+      if(this.left && !this.right) return 1 + this.left.height()
+      if(this.right && !this.left) return 1 + this.right.height()
+    
+      return Math.max(1 + this.left.height(), 1 + this.right.height())
+    
+  };
+  
+  /*
+  * EJERCICIO 8
+  *
+  * Implemtnar la funcion balanced dentro del prototype de BinarySearchTree que determine si el arbol
+  * se encuentra o no balanceado.
+  *
+  * Parametros: -
+  * 
+  * Salida:
+  *   > true: si el arbol esta balanceado
+  *   > false: si el arbol no esta balanceado
+  *
+  *
+  *            16             ---> Nivel 1
+            /      \
+          6         23        ---> Nivel 2
+        /  \       /   \
+       2    14    17    31    ---> Nivel 3
+        \
+         5                    ---> Nivel 4
+  
+  * La funcion devolveria true
+  *
+  * TIP: Se pueden usar funciones previamente definidas
+  * */
+  
+  BinarySearchTree.prototype.balanced = function(){
+    let sizeLeft
+    let sizeRight
+  
+    if(this.left && this.right){
+      sizeLeft = this.left.size()
+      sizeRight = this.right.size()
+    } else return false
+  
+    return sizeLeft === sizeRight
+  };
+  
+  
+  /* EJERCICIO 9
+  *
+  * Ordena un arreglo de objetos usando un SELECTION SORT pero con algunas particularidades.
+  * Ademas del arreglo a ordenar, la funcion va a recibir como parametro una función que va
+  * ser quien va a determinar si un elemento es mayor a otro para determinar su posicion final.
+  *
+  * Ejemplo:
+  * let array = [
+  *   {title: 'Comprar tomate', description: 'Ir a la verduleria a comprar tomate', priority: 4, price: 300},
+  *   {title: 'Ir al gimnasio', description: 'Ir al gimnasio', priority: 4, price: 200},
+  *   {title: 'Comprar harina', description: 'Ir al supermercado a comprar harina', priority: 2, price: 200},
+  *   {title: 'Comprar libro', description: 'Ir a la libreria', priority: 2, price: 700}
+  * ]
+  *
+  * orderFunction(array[0], array[1]) -> Devolvera 1 si, la prioridad de array[0] es mayor a la prioridad de array[1].
+  *                                      En el caso de que las prioridades sean iguales, el que tiene mayor precio, es mas grande.
+  *                                      Por lo tanto array[0] > array[1] ya que array[0].priority === array[1].priority &&
+  *                                                                              array[0].price > array[1].price
+  *
+  *                                   -> Devolvera -1 caso contrario. Es decir, si array[0].priority < array[1].priority
+  *                                   => Devolvera 1 si están bien ordenados o -1 si hay que intercambiarlos
+  *
+  * specialSort(array, orderFunction) -> retornaria el siguiente arreglo
+  * [
+  *   {title: 'Comprar tomate', description: 'Ir a la verduleria a comprar tomate', priority: 4, price: 300},
+  *   {title: 'Ir al gimnasio', description: 'Ir al gimnasio', priority: 4, price: 200},
+  *   {title: 'Comprar libro', description: 'Ir a la libreria', priority: 2, price: 700}
+  *   {title: 'Comprar harina', description: 'Ir al supermercado a comprar harina', priority: 2, price: 200}
+  * ]
+  * 
+  * */
+  
+  var specialSort = function(array, orderFunction) {
+    for(let i = 0; i < array.length; i++) {
+      // Finding the smallest number in the subarray
+      let min = i; // 0
+      for(let j = i+1; j < array.length; j++){
+          // if(array[j] < array[min]) {
+          if(orderFunction(array[min], array[j]) === -1) { // 1 || -1
+              min=j; 
+          }
+       }
+       if (min != i) {
+           // Swapping the elements
+           let tmp = array[i]; // 1
+           array[i] = array[min];
+           array[min] = tmp;
+      }
+    }
+  
+    return array
+  };
+  
 
 
 
