@@ -652,8 +652,89 @@ function reverseWords(str){
     return array
   };
   
+  // EJERCICIO 9
+// Implementar la función cardGame: a partir de dos Queues que va a recibir como paráemtro que
+// van a representar mazos de cartas de dos jugadores debemos determinar quien va a ser el ganador
+// de este juego que va a tener la siguiente dinámica:
+// - Los jugadores tendrán que defender su "Castillo" que contiene un total de 100 puntos de resistencia
+// - Cada carta tendrá puntos de ataque (attack) y puntos de defensa (defen 
+// - Ambos jugadores van a sacar las dos primeras cartas de su mazo
+//      * La primera carta será su carta asignada para atacar
+//      * La segunda carta será su carta asignada para defender
+// - La carta asignada para atacar del jugador uno se enfrentará contra la carta asignada para defender
+//   del jugador dos y viceversa. Si el ataque supera los puntos de defensa el daño sobrante será aplicado
+//   sobre el castillo.
+// - El juego finaliza cuando alguno de los dos castillos se quede sin puntos de resistencia o cuando los mazos
+//   se acaben. En este último caso ganará aquel jugador que tenga mayor cantidad de puntos de resistencia
+//   restantes en su castillo.
+// La función deberá devolver un string indicando al ganador: 'PLAYER ONE' o 'PLAYER TWO' (Respetar mayúsculas) o
+// 'TIE' en el caso de empate
+// NOTA: Ambos mazos contienen la misma cantidad de cartas
+//
+// Ejemplo:
+// Los jugadores levantan 2 cartas cada uno.
+// La primera carta del jugador uno va a atacar a la segunda carta del jugador dos
+// La primer carta del jugador dos va a atacar a la segunda carta del jugador uno
+//
+// Primer carta del jugador 1 (ATAQUE) vs Segunda carta del jugador 2 (DEFENSA):
+// {attack: 5, defense: 5} vs {attack: 5, defense: 20}
+// Ataque 5 vs Defensa 20 --> 5 no supera 20 --> No hay daño sobre el castillo
+//
+// Primer carta del jugador 2 (ATAQUE) vs Segunda carta del jugador 1 (DEFENSA):
+// {attack: 20, defense: 26} vs {attack: 15, defense: 10}
+// Ataque 20 vs Defensa 10 --> 20 supera a 10 --> Como hay 10 puntos de diferencia esa cantidad de daño es aplicada
+// al castillo del jugador 1
+//
+// Una vez terminada la ronda, se procede a repetir lo mismo con las siguientes 2 cartas de cada jugaodr hasta
+// finalizar el juego.
+function cardGame(playerOneCards, playerTwoCards) {
+  // Tu código aca:
+/*   let castlePlayer1 = 100;
+  let castlePlayer2 = 100;
 
+  while(playerOneCards.size() || playerTwoCards.size()){
+    let card1PlayerOne = playerOneCards.dequeue()
+    let card2PlayerOne = playerOneCards.dequeue()
+    let card1PlayerTwo = playerTwoCards.dequeue()
+    let card2PlayerTwo = playerTwoCards.dequeue()
 
+    if(card1PlayerOne.attack > card2PlayerTwo.defense){
+      let subtract = card1PlayerOne.attack - card2PlayerTwo.defense;
+      castlePlayer2 -= subtract
+    }
+    if(card1PlayerTwo.attack > card2PlayerOne.defense){
+      let subtract = card1PlayerTwo.attack - card2PlayerOne.defense;
+      castlePlayer1 -=  subtract
+    }
+    if(castlePlayer1 === 0 || castlePlayer2 === 0) break
+  }
+  if(castlePlayer1 === castlePlayer2) return 'TIE'
+  if (castlePlayer1 > castlePlayer2) return 'PLAYER ONE' 
+  else return 'PLAYER TWO' */
+}
+
+// EJERCICIO 7
+// La función countDeep recibe por parámetro un arreglo que contiene números y/o arreglos (estos últimos contienen, a su vez, más números y/o arreglos), y retorna la cantidad de arreglos que hay en total, incluyendo al padre.
+// Ejemplo:
+// countDeep( [ 1, 2, 3, [ 4, [ 5, 6 ] ], 7, [ 8 ], 9] ) ----> Debería retornar 4
+function countDeep(arr) {
+  // Tu código aca:
+  let acc = 1;
+/*   for(let i=0; i < arr.length; i++){
+    if(Array.isArray(arr[i])){
+      acc += countDeep(arr[i])
+    }
+  } */
+  /* ----------------------------------- */
+  /*   for (const element of arr) {
+    if(Array.isArray(element)) acc += countDeep(element)
+  } */
+  /* ----------------------------------- */
+  arr.forEach(element => {
+    if(Array.isArray(element)) acc += countDeep(element)
+  });
+  return acc;
+}
 
 
 
